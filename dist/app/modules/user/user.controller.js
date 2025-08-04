@@ -19,10 +19,6 @@ const sendResponse_1 = require("../../utils/sendResponse");
 const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const createUser = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_service_1.UserServices.createUser(req.body);
-    // res.status(httpStatus.CREATED).json({
-    //   message: "User Created Successfully",
-    //   user,
-    // });
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
         statusCode: http_status_codes_1.default.CREATED,

@@ -47,10 +47,12 @@ DigiCash ensures robust authentication, authorization, and transaction tracking,
 src/
 ├── app.ts                # Express app configuration
 ├── server.ts             # Main entry point to start the server
-├── modules/              # Modular features: auth, user, wallet, transaction
-├── middlewares/          # Authorization, error handlers, etc.
-├── config/               # Database & environment configurations
-└── utils/                # Utility/helper functions
+└── app/
+    ├── modules/          # Modular features: auth, user, wallet, transaction, otp, stats
+    ├── middlewares/      # Authorization, error handlers, etc.
+    ├── config/           # Database & environment configurations
+    └── utils/            # Utility/helper functions
+
 ```
 
 ---
@@ -103,7 +105,7 @@ src/
 
 ## 📡 API Endpoint Overview
 
-### 👤 Create User (Wallet auto-created)
+### 👤 Create User Manual and Google login by passport (Wallet auto-created)
 
 **POST:** `/api/v1/user/create`
 

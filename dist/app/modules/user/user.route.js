@@ -12,7 +12,7 @@ router.post("/register", (0, validateRequest_1.validateRequest)(user_validation_
 router.get("/all-users", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), user_controller_1.UserControllers.getAllUsers);
 router.get("/me", (0, checkAuth_1.checkAuth)(...Object.values(user_interface_1.Role)), user_controller_1.UserControllers.getMe);
 router.get("/:id", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), user_controller_1.UserControllers.getSingleUser);
-router.patch("/update/:id", (0, validateRequest_1.validateRequest)(user_validation_1.udateUserZodSchema), (0, checkAuth_1.checkAuth)(...Object.values(user_interface_1.Role)), user_controller_1.UserControllers.updateUser);
+router.patch("/update/:id", (0, validateRequest_1.validateRequest)(user_validation_1.udateUserZodSchema), (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), user_controller_1.UserControllers.updateUser);
 router.post("/request-agent", (0, checkAuth_1.checkAuth)(user_interface_1.Role.USER), user_controller_1.UserControllers.requestAgentRole);
 router.patch("/approve-agent/:userId", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), user_controller_1.UserControllers.approveAgent);
 router.delete("/delete/:id", user_controller_1.UserControllers.deleteUser);
