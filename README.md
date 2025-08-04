@@ -427,7 +427,7 @@ src/
 
 ### ✏️ Delete user
 
-**PATCH:** `/api/v1/user/delete/:id`
+**DELETE:** `/api/v1/user/delete/:id`
 
 **Description:** Every user has the ability to delete their own account, wallet, transactions..
 
