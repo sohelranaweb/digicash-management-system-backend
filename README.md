@@ -149,7 +149,60 @@ src/
   }
 }
 ```
+---
+## 👤 Get All Users (Only Admin)
 
+**GET:** `/api/v1/user/all-users`
+
+**Description:** Retrieve a paginated list of all users in the system (Admin only).
+
+**Auth Required:** Yes (Admin token)
+
+**Request Body:** None
+
+**Success Response (200 OK):**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "All Users Retrieved Successfully",
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 7,
+    "totalPage": 2,
+    "count": 5
+  },
+  "data": [
+    {
+      "_id": "688f8ecf76f2cfffebbcca53",
+      "name": "Sohel4",
+      "email": "sohel4@gmail.com"
+    },
+    {
+      "_id": "688f759ec3b43b4bce153a03",
+      "name": "Sohel3",
+      "email": "sohel3@gmail.com"
+    },
+    {
+      "_id": "688f3b97e8f29b3f34f5d6ef",
+      "name": "MS RANA",
+      "email": "msr3876@gmail.com"
+    },
+    {
+      "_id": "688f3b18e8f29b3f34f5d6e6",
+      "name": "Sohel",
+      "email": "sohel@gmail.com"
+    },
+    {
+      "_id": "688f3ad7e8f29b3f34f5d6e1",
+      "name": "Sohel",
+      "email": "sohel.rana.web1@gmail.com"
+    }
+  ]
+}
+```
 ---
 
 ### 👤 Get Me (Current Logged-In User)
