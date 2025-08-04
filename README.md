@@ -500,3 +500,63 @@ src/
 ```
 
 ---
+
+### ✏️ 2. Logout
+
+**POST:** `/api/v1/auth/logout`
+
+**Description:** User logout
+
+**Auth Required:** None.
+
+**Request:**
+
+```json
+{
+  "email": "sohel.rana.web1@gmail.com",
+  "password": "Sohel1web!"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "User Logged Out  Successfully",
+  "data": null
+}
+```
+
+---
+
+### ✏️ 3. Logout
+
+**POST:** `/api/v1/auth/change-password`
+
+**Description:** Change password
+
+**Auth Required:** (Current user Token).
+
+**Request:**
+
+```json
+{
+  "oldPassword": "Sohel1web!1!",
+  "newPassword": "Sohel1web!"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Password Changed Successfully",
+  "data": null
+}
+```
+
+---
