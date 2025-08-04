@@ -531,7 +531,7 @@ src/
 
 ---
 
-### ✏️ 3. Logout
+### ✏️ 3. Change Passowrd
 
 **POST:** `/api/v1/auth/change-password`
 
@@ -555,6 +555,68 @@ src/
   "statusCode": 200,
   "success": true,
   "message": "Password Changed Successfully",
+  "data": null
+}
+```
+
+---
+
+### ✏️ 3. Access/Refresh Token
+
+**POST:** `/api/v1/auth/refresh-token`
+
+**Description:** Get new access token for authorized instead login
+
+**Auth Required:** (Current user Token not need automatically set cookie).
+
+**Request:**
+
+```json
+{
+  "email": "sohel@gmail.com",
+  "password": "Sohel1234!"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "New Access Token Retrieved Successfully",
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODhmNzU5ZWMzYjQzYjRiY2UxNTNhMDMiLCJlbWFpbCI6InNvaGVsM0BnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTQyOTI1OTcsImV4cCI6MTc1NDM3ODk5N30.wHLtRB2HSTgMyseUYOnUxsU0uspCJcdgLC2uuk5DIrU"
+  }
+}
+```
+
+---
+
+### ✏️ 4. Reset Password
+
+**POST:** `/api/v1/auth/reset-password`
+
+**Description:** Password reset
+
+**Auth Required:** (Current user Token ).
+
+**Request:**
+
+```json
+{
+  "id": "688f759ec3b43b4bce153a03",
+  "newPassword": "Sohel312345!"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Password Reset Successfully",
   "data": null
 }
 ```
