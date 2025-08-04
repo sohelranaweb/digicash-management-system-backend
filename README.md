@@ -660,7 +660,7 @@ src/
 
 ---
 
-### ✏️ 2. Send Money()
+### ✏️ 2. Send Money(Only user)
 
 **POST:** `/api/v1/wallet/send-money`
 
@@ -798,9 +798,9 @@ src/
 
 ---
 
-### ✏️ 6. Wallet and Transaction history
+### ✏️ 6.Get Wallet and Transaction history
 
-**PATCH:** `/api/v1/wallet/wallet-trnx-history`
+**GET:** `/api/v1/wallet/wallet-trnx-history`
 
 **Description:** All Role can see wallet and transaction history.
 
@@ -847,6 +847,336 @@ src/
         "trxId": "trx_1754294772205_451"
       }
     ]
+  }
+}
+```
+
+---
+
+### Transactions Related Apis Endpoints
+
+---
+
+### ✏️ 1. Get All Transactions (Only Admin Allowed)
+
+**GET:** `/api/v1/trx/all-transactions`
+
+**Description:** Admin can see All Transactions
+
+**Auth Required:** (Admin token).
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "All Transactions Retrieved Successfully",
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 20,
+    "totalPage": 4,
+    "count": 5
+  },
+  "data": [
+    {
+      "_id": "689069f4b9444bee785c298b",
+      "type": "CASH_OUT",
+      "amount": 200,
+      "status": "COMPLETED"
+    },
+    {
+      "_id": "689068edb9444bee785c297d",
+      "type": "CASH_IN",
+      "amount": 200,
+      "status": "COMPLETED"
+    },
+    {
+      "_id": "6890682db9444bee785c2974",
+      "type": "SEND_MONEY",
+      "amount": 100,
+      "status": "COMPLETED"
+    },
+    {
+      "_id": "6890660ced3c3c3d00883c32",
+      "type": "ADD_MONEY",
+      "amount": 499,
+      "status": "COMPLETED"
+    },
+    {
+      "_id": "688f86827547247bf41b0c3b",
+      "type": "CASH_IN",
+      "amount": 200,
+      "status": "COMPLETED"
+    }
+  ]
+}
+```
+
+---
+
+### ✏️ 2. Get Single transaction with trxId(Any valid user)
+
+**GET:** `/api/v1/trx/transaction/id` TrxId: (trx_1754225437348_243)
+
+**Description:** User can see specific transaction by TrxId: (trx_1754225437348_243)
+
+**Auth Required:** None.
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Transaction fetched successfully",
+  "data": {
+    "_id": "688f5b1d5080ad9f9f511b47",
+    "type": "ADD_MONEY",
+    "amount": 200,
+    "fee": 0,
+    "commission": 0,
+    "status": "COMPLETED",
+    "initiatedBy": "USER",
+    "user": "688f3ad7e8f29b3f34f5d6e1",
+    "trxId": "trx_1754225437348_243",
+    "createdAt": "2025-08-03T12:50:37.352Z",
+    "updatedAt": "2025-08-03T12:50:37.352Z"
+  }
+}
+```
+
+---
+
+### OTP Related Apis Endpoints
+
+---
+
+### ✏️ 1. Send OTP (Any user for verify by email)
+
+**POST:** `/api/v1/otp/send`
+
+**Description:** For verifying User
+
+**Auth Required:** None.
+
+**Request:**
+
+```json
+{
+  "name": "Sohel",
+  "email": "sohel.rana.web1@gmail.com"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "OTP sent successfully",
+  "data": null
+}
+```
+
+---
+
+### ✏️ 2. Very OTP
+
+**POST:** `/api/v1/otp/verify`
+
+**Description:** verify user by get otp from email
+
+**Auth Required:** None.
+
+**Request:**
+
+```json
+{
+  "email": "sohel.rana.web1@gmail.com",
+  "otp": "264626"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "OTP verified successfully",
+  "data": null
+}
+```
+
+---
+
+### Stats Related Apis Endpoints(Only Admin)
+
+---
+
+### ✏️ 1. Get Users Stats (Only Admin)
+
+**GET:** `/api/v1/stats/user`
+
+**Description:** Admin can see all user stats
+
+**Auth Required:** Admin token.
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "User stats fetched successfully",
+  "data": {
+    "totalUsers": 7,
+    "totalActiveUsers": 7,
+    "totalInActiveUsers": 0,
+    "totalBlockedUsers": 0,
+    "newUsersInLast7Days": 7,
+    "newUsersInLast30Days": 7,
+    "usersByRole": [
+      {
+        "_id": "USER",
+        "count": 2
+      },
+      {
+        "_id": "ADMIN",
+        "count": 1
+      },
+      {
+        "_id": "AGENT",
+        "count": 4
+      }
+    ]
+  }
+}
+```
+
+---
+
+### ✏️ 2. Transactions Stats
+
+**GET:** `/api/v1/stats/transactions`
+
+**Description:** All Transactions stats
+
+**Auth Required:** (Admin token)
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Admin Dashboard Summary of transactions for range: all",
+  "data": {
+    "summary": {
+      "CASH_OUT": {
+        "totalCount": 8,
+        "totalAmountOverall": 1957.99,
+        "totalCommissionOverall": 7.84,
+        "totalFeeOverall": 35.24,
+        "counts": {
+          "COMPLETED": {
+            "count": 8,
+            "totalAmount": 1957.99,
+            "totalCommission": 7.84,
+            "totalFee": 35.24
+          }
+        }
+      },
+      "CASH_IN": {
+        "totalCount": 7,
+        "totalAmountOverall": 2100,
+        "totalCommissionOverall": 8.4,
+        "totalFeeOverall": 0,
+        "counts": {
+          "PENDING": {
+            "count": 1,
+            "totalAmount": 500,
+            "totalCommission": 2,
+            "totalFee": 0
+          },
+          "COMPLETED": {
+            "count": 6,
+            "totalAmount": 1600,
+            "totalCommission": 6.4,
+            "totalFee": 0
+          }
+        }
+      },
+      "SEND_MONEY": {
+        "totalCount": 2,
+        "totalAmountOverall": 300,
+        "totalCommissionOverall": 0,
+        "totalFeeOverall": 10,
+        "counts": {
+          "COMPLETED": {
+            "count": 2,
+            "totalAmount": 300,
+            "totalCommission": 0,
+            "totalFee": 10
+          }
+        }
+      },
+      "ADD_MONEY": {
+        "totalCount": 3,
+        "totalAmountOverall": 2699,
+        "totalCommissionOverall": 0,
+        "totalFeeOverall": 0,
+        "counts": {
+          "COMPLETED": {
+            "count": 3,
+            "totalAmount": 2699,
+            "totalCommission": 0,
+            "totalFee": 0
+          }
+        }
+      }
+    },
+    "totalPlatformTransactionAmount": 7056.99,
+    "totalAgentCommission": 16.24,
+    "totalAdminIncome": 45.24
+  }
+}
+```
+
+---
+
+### ✏️ 2. Transactions Stats
+
+**GET:** `/api/v1/stats/transactions`
+
+**Description:** All Transactions stats
+
+**Auth Required:** (Admin token)
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Wallet Summary fetched successfully",
+  "data": {
+    "totalWallets": 7,
+    "blockedWallets": 0,
+    "unblockedWallets": 7
   }
 }
 ```
