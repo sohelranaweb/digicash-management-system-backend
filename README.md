@@ -622,3 +622,233 @@ src/
 ```
 
 ---
+
+### Wallet Related Apis Endpoints
+
+---
+
+### ✏️ 1. Top-up(Only user Allowed)
+
+**POST:** `/api/v1/wallet/top-up`
+
+**Description:** User can add own money for wallet
+
+**Auth Required:** (Current user token).
+
+**Request:**
+
+```json
+{
+  "amount": 499
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 201,
+  "success": true,
+  "message": "Top up successful. Total deposited: 499.00 ৳",
+  "data": {
+    "oldBalance": "50.00",
+    "newBalance": "549.00",
+    "trxId": "trx_1754293772004_115"
+  }
+}
+```
+
+---
+
+### ✏️ 2. Send Money()
+
+**POST:** `/api/v1/wallet/send-money`
+
+**Description:** User can send money any valid user(userId not WalletId)
+
+**Auth Required:** (Current user token).
+
+**Request:**
+
+```json
+{
+  "receiverId": "688f759ec3b43b4bce153a03",
+  "amount": 100,
+  "reference": "send money 1"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Successfully sent 100 ৳ to user. Fee 5 ৳ deducted.",
+  "data": {
+    "oldBalance": 549,
+    "newSenderBalance": 444,
+    "trxId": "trx_1754294317340_710"
+  }
+}
+```
+
+---
+
+### ✏️ 3. Cash-in (Oly Agent can do this)
+
+**POST:** `/api/v1/auth/change-password`
+
+**Description:** Agent can cash-in any valid user(by userId)
+
+**Auth Required:** (Current Agent Token).
+
+**Request:**
+
+```json
+{
+  "userId": "688f759ec3b43b4bce153a03",
+  "amount": 200,
+  "reference": "cash in 1"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Cash in successful. Amount: 200 ৳, Agent commission paid from admin wallet: 0.80 ৳",
+  "data": {
+    "oldBalance": 2214.57,
+    "newAgentBalance": 2015.37,
+    "trxId": "trx_1754294509857_317"
+  }
+}
+```
+
+---
+
+### ✏️ 4. Cash-out(Any valid user can this)
+
+**POST:** `/api/v1/wallet/cash-out`
+
+**Description:** Any valid user can cash-out to valid agent wallet(by agent!alletId)
+
+**Auth Required:** (Current user Token).
+
+**Request:**
+
+```json
+{
+  "amount": 200,
+  "agentWalletId": "688f3b18e8f29b3f34f5d6e8",
+  "reference": "200 taka only"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Cash out successful. Total deducted: 203.6 ৳",
+  "data": {
+    "oldBalance": 444,
+    "totalDeducted": 203.6,
+    "newBalance": 240.4,
+    "fee": 3.6,
+    "trxId": "trx_1754294772205_451"
+  }
+}
+```
+
+---
+
+### ✏️ 5. update blockWallet to unblockWallet(Only Admin)
+
+**PATCH:** `/api/v1/wallet/unblock/id`
+
+**Description:** Admin changes the block Wallet to unblockWallet. give walletId.
+
+**Auth Required:** (Admin Token ).
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Wallet has been unblocked successfully",
+  "data": {
+    "_id": "689065c6ed3c3c3d00883c2a",
+    "owner": "689065c6ed3c3c3d00883c28",
+    "balance": 240.4,
+    "isBlocked": false,
+    "transactions": ["6890660ced3c3c3d00883c32", "689069f4b9444bee785c298b"],
+    "createdAt": "2025-08-04T07:48:22.349Z",
+    "updatedAt": "2025-08-04T08:13:57.279Z"
+  }
+}
+```
+
+---
+
+### ✏️ 6. Wallet and Transaction history
+
+**PATCH:** `/api/v1/wallet/wallet-trnx-history`
+
+**Description:** All Role can see wallet and transaction history.
+
+**Auth Required:** (Current user token ).
+
+**Request:** None
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Wallet and transaction history fetched successfully",
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 3,
+    "totalPage": 1,
+    "count": 3
+  },
+  "data": {
+    "wallet": {
+      "balance": 457.2,
+      "isBlocked": false
+    },
+    "transactions": [
+      {
+        "type": "CASH_OUT",
+        "amount": 500,
+        "commission": 2,
+        "trxId": "trx_1754228371918_847"
+      },
+      {
+        "type": "CASH_IN",
+        "amount": 500,
+        "commission": 2,
+        "trxId": "trx_1754229089851_365"
+      },
+      {
+        "type": "CASH_OUT",
+        "amount": 200,
+        "commission": 0.8,
+        "trxId": "trx_1754294772205_451"
+      }
+    ]
+  }
+}
+```
+
+---
