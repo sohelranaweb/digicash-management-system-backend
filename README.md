@@ -150,5 +150,176 @@ src/
 }
 ```
 
+---
 
+### 👤 Get Me (Current Logged-In User)
 
+**GET:** `/api/v1/user/me`
+
+**Description:** Retrieve current logged-in user’s info.
+
+**Auth Required:** ✅ (Bearer Token)
+
+**Request:** _none_
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Get me Retrieved Successfully",
+  "data": {
+    "_id": "688f3ad7e8f29b3f34f5d6e1",
+    "name": "Sohel",
+    "email": "sohel.rana.web1@gmail.com",
+    "role": "AGENT",
+    "isDeleted": false,
+    "isActive": "ACTIVE",
+    "isVerified": true,
+    "auths": [
+      {
+        "provider": "credentials",
+        "providerId": "sohel.rana.web1@gmail.com"
+      }
+    ],
+    "createdAt": "2025-08-03T10:32:55.883Z",
+    "updatedAt": "2025-08-03T15:53:36.769Z",
+    "wallet": "688f3ad7e8f29b3f34f5d6e3",
+    "agentApprovalStatus": "APPROVED"
+  }
+}
+```
+
+---
+
+### 🧾 Agent Request (User wants to become an agent)
+
+**POST:** `/api/v1/user/request-agent`
+
+**Description:** Submit a request to become an agent (by current user).
+
+**Auth Required:** ✅ (User Token)
+
+**Request:** _none_
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Agent request submitted, waiting for admin approval",
+  "data": {
+    "_id": "688f8ecf76f2cfffebbcca53",
+    "name": "Sohel4",
+    "email": "sohel4@gmail.com",
+    "password": "$2b$10$YIlxDnyP8C7fS5fQKGC2w.egdiE8yZI7tmhj/CCbvVQ2oMTm1w.bq",
+    "role": "AGENT",
+    "isDeleted": false,
+    "isActive": "ACTIVE",
+    "isVerified": true,
+    "auths": [
+      {
+        "provider": "credentials",
+        "providerId": "sohel4@gmail.com"
+      }
+    ],
+    "createdAt": "2025-08-03T16:31:11.797Z",
+    "updatedAt": "2025-08-04T05:44:33.674Z",
+    "wallet": "688f8ed076f2cfffebbcca56",
+    "agentApprovalStatus": "PENDING"
+  }
+}
+```
+
+---
+
+### ✅ Agent Approved (Requesting agent is approved by admin)
+
+**PATCH:** `/api/v1/user/approve-agent/:id`
+
+**Description:** Approve the requested agent (by admin).
+
+**Auth Required:** ✅ (Admin)
+
+**Request:** _none_
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Agent approved succesfully",
+  "data": {
+    "_id": "688f8ecf76f2cfffebbcca53",
+    "name": "Sohel4",
+    "email": "sohel4@gmail.com",
+    "password": "$2b$10$YIlxDnyP8C7fS5fQKGC2w.egdiE8yZI7tmhj/CCbvVQ2oMTm1w.bq",
+    "role": "AGENT",
+    "isDeleted": false,
+    "isActive": "ACTIVE",
+    "isVerified": true,
+    "auths": [
+      {
+        "provider": "credentials",
+        "providerId": "sohel4@gmail.com"
+      }
+    ],
+    "createdAt": "2025-08-03T16:31:11.797Z",
+    "updatedAt": "2025-08-04T05:47:20.661Z",
+    "wallet": "688f8ed076f2cfffebbcca56",
+    "agentApprovalStatus": "APPROVED"
+  }
+}
+```
+
+---
+
+### ✏️ Update User (Admin can change user role)
+
+**PATCH:** `/api/v1/user/update/:id`
+
+**Description:** Admin can update a user’s role.
+
+**Auth Required:** ✅ (Admin)
+
+**Request:**
+
+```json
+{
+  "role": "ADMIN"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 201,
+  "success": true,
+  "message": "User Updated Successfully",
+  "data": {
+    "_id": "688f759ec3b43b4bce153a03",
+    "name": "Sohel3",
+    "email": "sohel3@gmail.com",
+    "password": "$2b$10$wdN3ULlCto8Bd38QcyRo0u9dGVi6aLLMLSoW0uf3hGkoM7cvDLR42",
+    "role": "ADMIN",
+    "isDeleted": false,
+    "isActive": "ACTIVE",
+    "isVerified": true,
+    "auths": [
+      {
+        "provider": "credentials",
+        "providerId": "sohel3@gmail.com"
+      }
+    ],
+    "createdAt": "2025-08-03T14:43:42.667Z",
+    "updatedAt": "2025-08-04T05:59:25.208Z",
+    "wallet": "688f759ec3b43b4bce153a05"
+  }
+}
+```
+
+---

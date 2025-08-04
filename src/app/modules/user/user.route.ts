@@ -21,7 +21,7 @@ router.get("/:id", checkAuth(Role.ADMIN), UserControllers.getSingleUser);
 router.patch(
   "/update/:id",
   validateRequest(udateUserZodSchema),
-  checkAuth(...Object.values(Role)),
+  checkAuth(Role.ADMIN),
   UserControllers.updateUser
 );
 
