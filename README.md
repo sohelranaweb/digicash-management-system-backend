@@ -433,6 +433,8 @@ src/
 
 **Request:** None
 
+**Response:**
+
 ```json
 {
   "statusCode": 200,
@@ -441,3 +443,60 @@ src/
   "data": null
 }
 ```
+
+---
+
+### Auth Related Apis Endpoints
+
+---
+
+### ✏️ 1. Login
+
+**POST:** `/api/v1/auth/login`
+
+**Description:** Authenticate a user and generate an access token to use for authorized requests
+
+**Auth Required:** None.
+
+**Request:**
+
+```json
+{
+  "email": "sohel3@gmail.com",
+  "password": "Sohel31234!"
+}
+```
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "User Logged In Successfully",
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODhmNzU5ZWMzYjQzYjRiY2UxNTNhMDMiLCJlbWFpbCI6InNvaGVsM0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc1NDI4NzExMCwiZXhwIjoxNzU0MzczNTEwfQ.-lzZblPS_jAMrYybeR1wbYIuTVwCRvrva3tlDSrXzF0",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODhmNzU5ZWMzYjQzYjRiY2UxNTNhMDMiLCJlbWFpbCI6InNvaGVsM0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc1NDI4NzExMCwiZXhwIjoxNzU2ODc5MTEwfQ.fOm8wnoy3tLKd7tFNuPETXf9nhehYSG9zTz2jYdORz8",
+    "user": {
+      "_id": "688f759ec3b43b4bce153a03",
+      "name": "Sohel3",
+      "email": "sohel3@gmail.com",
+      "role": "USER",
+      "isDeleted": false,
+      "isActive": "ACTIVE",
+      "isVerified": true,
+      "auths": [
+        {
+          "provider": "credentials",
+          "providerId": "sohel3@gmail.com"
+        }
+      ],
+      "createdAt": "2025-08-03T14:43:42.667Z",
+      "updatedAt": "2025-08-03T14:43:42.878Z",
+      "wallet": "688f759ec3b43b4bce153a05"
+    }
+  }
+}
+```
+
+---
