@@ -695,7 +695,7 @@ src/
 
 ---
 
-### ✏️ 3. Cash-in (Oly Agent can do this)
+### ✏️ 3. Cash-in (Only Agent can do this)
 
 **POST:** `/api/v1/auth/change-password`
 
@@ -1156,11 +1156,11 @@ src/
 
 ---
 
-### ✏️ 2. Transactions Stats
+### ✏️ 3. Wallets Stats
 
-**GET:** `/api/v1/stats/transactions`
+**GET:** `/api/v1/stats/wallets`
 
-**Description:** All Transactions stats
+**Description:** All Wallets stats
 
 **Auth Required:** (Admin token)
 
