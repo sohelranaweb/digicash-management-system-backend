@@ -149,7 +149,9 @@ src/
   }
 }
 ```
+
 ---
+
 ## 👤 Get All Users (Only Admin)
 
 **GET:** `/api/v1/user/all-users`
@@ -203,6 +205,48 @@ src/
   ]
 }
 ```
+
+---
+
+### 👤Get single user (Only admin)
+
+**GET:** `/api/v1/user/id`
+
+**Description:** Retrieve single user information by user ID (Admin only)..
+
+**Auth Required:** ✅ (Admin token)
+
+**Request:** _none_
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "Single User Retrieved Successfully",
+  "data": {
+    "_id": "688f3995e8f29b3f34f5d6dc",
+    "name": "Sohel2",
+    "email": "sohel2@gmail.com",
+    "role": "AGENT",
+    "isDeleted": false,
+    "isActive": "ACTIVE",
+    "isVerified": true,
+    "auths": [
+      {
+        "provider": "credentials",
+        "providerId": "sohel2@gmail.com"
+      }
+    ],
+    "createdAt": "2025-08-03T10:27:33.128Z",
+    "updatedAt": "2025-08-03T13:19:07.624Z",
+    "wallet": "688f3995e8f29b3f34f5d6de",
+    "agentApprovalStatus": "APPROVED"
+  }
+}
+```
+
 ---
 
 ### 👤 Get Me (Current Logged-In User)
@@ -376,3 +420,24 @@ src/
 ```
 
 ---
+
+---
+
+### ✏️ Delete user
+
+**PATCH:** `/api/v1/user/delete/:id`
+
+**Description:** Every user has the ability to delete their own account, wallet, transactions..
+
+**Auth Required:** None.
+
+**Request:** None
+
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "message": "User, wallet, and transactions deleted successfully.",
+  "data": null
+}
+```
